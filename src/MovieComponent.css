@@ -1,0 +1,18 @@
+.MovieRows {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: yellowgreen;   
+    column-gap: 50px;
+    row-gap: 30px;
+}
+
+#poster {
+    border-radius: 5px;
+}
+
+.movieInfo {
+    display: flex;
+    justify-content: space-between;
+
+}
+
