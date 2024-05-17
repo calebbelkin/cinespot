@@ -3,6 +3,7 @@ import './MainPage.css'
 import { useEffect, useState } from 'react';
 import Movie from './MovieComponent';
 import MovieGrid from './MovieGrid';
+import Button from '@mui/material/Button';
 
 
 function MainPage() {
@@ -62,21 +63,25 @@ setMovieData(data.results);
 
 
   console.log('line62', movieData)
-  const movieDetails = movieData.map(movie => (
-    <Movie key={movie.id} id={movie.id} title={movie.title} releaseDate={movie.release_date} image={movie.poster_path} rating={movie.vote_average} overview={movie.overview} />
-  ));
+  const movieDetails = movieData.map(movie => {
+    if (movie.poster_path == null) {return null 
+    }
+    return (
+      <Movie key={movie.id} id={movie.id} title={movie.title} releaseDate={movie.release_date} image={movie.poster_path} rating={movie.vote_average} overview={movie.overview} />
+    )
+});
 
     return (
       <div > 
-      <header className='search'>
-        <form className='bar' onSubmit={handleClick}> 
-          <input type="text" id="search" name="search" value={currentSearch} placeholder='Seach Movies' onChange={(e) => setCurrentSearch(e.target.value)}
-            /><br />
-          <input type="submit" value="Submit" />
-        </form> 
-        </header>
-        <div>
-         <MovieGrid movieDetails={movieDetails}/>
+        <header className='header'>
+          <form className='form' onSubmit={handleClick}> 
+            <input type="text" className="search-bar" name="search" value={currentSearch} placeholder='Seach Movies' onChange={(e) => setCurrentSearch(e.target.value)}/>
+            <input type="submit" value="" placeholder='' className='submit-btn' onClick={console.log('clicked')}/>
+          </form> 
+          <Button className='login' variant="outlined">Login</Button>;
+          </header>
+        <div className='backdrop'>
+          <MovieGrid movieDetails={movieDetails}/>
         </div>
       </div>
     );

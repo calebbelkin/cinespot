@@ -1,14 +1,21 @@
 import logo from './logo.svg';
+import { useNavigate } from 'react-router-dom';
 import './App.css';
 
 function App() {
+  let navigate = useNavigate();
+
+
+  const handleNav = () => {
+    navigate('/mainpage')
+  }
   return (
     <div className="App">
       <header className="App-header">
         <p>
           Welcome
         </p>
-        <button>
+        <button onClick={handleNav}>
           Press here to enter
         </button>
       </header>

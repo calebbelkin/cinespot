@@ -1,18 +1,46 @@
 .MovieRows {
     display: flex;
     flex-wrap: wrap;
-    background-color: yellowgreen;   
+    background-color: #3b3b3b;
     column-gap: 50px;
     row-gap: 30px;
+    justify-content: flex-start; /* Aligns items to the start (left) */
+    padding-top: 40px;
+    padding-left: 50px;
+    margin: 0 auto; /* Centers the container horizontally */
+    max-width: 2000px; /* Adjust this value based on your preferred max width */
+ 
+}
+.backdrop{
+    color: #3b3b3b;
 }
 
-#poster {
-    border-radius: 5px;
+.poster {
+    border-radius: 10px;
 }
 
-.movieInfo {
+ .movie-container {
+    position: relative;
+} 
+
+.movie-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Optional: Adjust according to the desired width */
+    z-index: 100; /* Ensures it overlays other content */
+}
+
+
+.year-and-rating {
     display: flex;
     justify-content: space-between;
+    color: #bababa;
+}
 
+.title{
+    font-size: 20px;
+    color: white;
+    padding-top: 5px;
 }
 

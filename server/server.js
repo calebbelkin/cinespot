@@ -3,10 +3,28 @@ const express = require('express');
 const app = express();
 const router = require("./router");
 const searchRouter = require('./searchRouter')
+const userRouter = require('./userRouter')
 const cors = require('cors');
 // const axios = require('axios');
 const bodyParser  = require('body-parser')
 const PORT = 4321;
+// require('dotenv').config()
+const mongoose = require('mongoose');
+
+const MONGO_URI='mongodb+srv://calebbelkin:uMqxXq62goJDsqeY@cinespot.qawajig.mongodb.net/?retryWrites=true&w=majority&appName=CineSpot'
+// mongoose
+//   .connect(process.env.MONGO_URI)
+//   .then(() => console.log('DB Connected (ﾉ^ヮ^)ﾉ*:･ﾟ✧'))
+//   .catch((err) => console.log(err));
+
+mongoose
+  .connect(MONGO_URI, {
+    // options for the connect method to parse the URI
+    // sets the name of the DB that our collections are part of
+    dbName: "cinedb",
+  })
+  .then(() => console.log("Connected to Mongo DB."))
+  .catch((err) => console.log(err));
 
 const corsOptions = {
   origin: '*',
@@ -14,7 +32,7 @@ const corsOptions = {
   optionSuccessStatus: 200,
 };
 
-app.use(bodyParser.json());
+app.use(express.json());
 app.use(cors(corsOptions));
 
 app.use(express.urlencoded({ extended: true }));
@@ -25,8 +43,14 @@ app.get("/", (req, res) => {
   console.log('wrong place')
   });
 
-  app.use("/movielist", router)
-  app.use("/search", searchRouter)
+  app.use("/movielist", router);
+  app.use("/search", searchRouter);
+  app.use("/userLogin", userRouter);
+
+  // app.post("/userLogin", async (req, res) => {
+  //   const userData = req.body;
+  //   console.log(req.body)
+  // })
 
   app.use((err, req, res, next) => {
     // err is the error object 
