@@ -1,27 +1,35 @@
 .MovieRows {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #3b3b3b;
-    column-gap: 50px;
-    row-gap: 30px;
-    justify-content: flex-start; /* Aligns items to the start (left) */
-    padding-top: 40px;
-    padding-left: 50px;
-    margin: 0 auto; /* Centers the container horizontally */
-    max-width: 2000px; /* Adjust this value based on your preferred max width */
+   display:flex;
+   flex-wrap: wrap;
+   column-gap: 20px;
+   row-gap: 40px;
+   padding-top: 40px;
+   padding-left: 60px;
+   padding-right: 60px;
+   /* justify-content: center; */
+   align-items: flex-start;
  
 }
+
+
 .backdrop{
     color: #3b3b3b;
 }
-
-.poster {
-    border-radius: 10px;
+.rating-star {
+    height: 1em; /* Sets the height relative to the font size of .year-and-rating */
+    width: auto;
 }
 
+
  .movie-container {
+    flex: 1 1 auto;
+    max-width: 300px;
+    height: auto;
     position: relative;
+    box-sizing: border-box;
 } 
+
+
 
 .movie-card {
     position: absolute;
@@ -32,10 +40,25 @@
 }
 
 
+
 .year-and-rating {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Space between elements to push them to the edges */
+    align-items: center; /* Vertically align items */
     color: #bababa;
+    font-size: 1rem; /* Define a base font size for the element */
+    background-color: green; /* For debugging purposes, can be removed */
+}
+
+
+.year {
+    margin-right: auto; /* Pushes the year to the far left */
+}
+
+.rating-container {
+    column-gap: 10px;
+    display: flex;
+    align-items: center; /* Center the items vertically */
 }
 
 .title{
@@ -44,3 +67,28 @@
     padding-top: 5px;
 }
 
+@media (max-width: 1200px) {
+    .movie-container {
+        flex: 1 1 250px; /* Adjust width for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .movie-container {
+        flex: 1 1 200px; /* Adjust width for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .movie-container {
+        flex: 1 1 150px; /* Adjust width for extra small screens */
+    }
+}
+
+
+
+.poster {
+    border-radius: 10px;
+    width: 100%; /* Ensure the poster takes full width of the container */
+    height: auto; /* Maintain aspect ratio */
+}

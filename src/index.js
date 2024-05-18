@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import MainPage from './MainPage';
 import { store } from './Redux/store'
 import { Provider } from 'react-redux'
+import Login from './login';
 
 const router = createBrowserRouter([
   {
@@ -16,7 +17,12 @@ const router = createBrowserRouter([
   {
     path: '/mainpage',
     element: <MainPage />
+  }, 
+  {
+    path: '/login', 
+    element: <Login />
   }
+    
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

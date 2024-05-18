@@ -1,9 +1,11 @@
 import React from 'react';
 import './MainPage.css'
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Movie from './MovieComponent';
 import MovieGrid from './MovieGrid';
 import Button from '@mui/material/Button';
+
 
 
 function MainPage() {
@@ -62,6 +64,15 @@ setMovieData(data.results);
     }, []);
 
 
+
+    let navigate = useNavigate();
+
+
+  const handleLoginNav = () => {
+    navigate('/login')
+  }
+
+
   console.log('line62', movieData)
   const movieDetails = movieData.map(movie => {
     if (movie.poster_path == null) {return null 
@@ -78,7 +89,7 @@ setMovieData(data.results);
             <input type="text" className="search-bar" name="search" value={currentSearch} placeholder='Seach Movies' onChange={(e) => setCurrentSearch(e.target.value)}/>
             <input type="submit" value="" placeholder='' className='submit-btn' onClick={console.log('clicked')}/>
           </form> 
-          <Button className='login' variant="outlined">Login</Button>;
+          <Button className='login' variant="outlined" onClick={handleLoginNav}>Login</Button>;
           </header>
         <div className='backdrop'>
           <MovieGrid movieDetails={movieDetails}/>

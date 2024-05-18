@@ -1,12 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
 import './MovieComponent.css'
-import Star from './assets/star.svg'
 import { useSelector, useDispatch } from 'react-redux';
 import { setColor, enableColorChange, disableColorChange, setLastClickedId } from './Redux/textSlice';
 import MovieCard from './MovieCard';
+import Star from './assets/star-outline.svg'
 
-function Movie ( { id, title, image, rating, releaseDate} ) {
+function Movie ( { id, title, image, rating, releaseDate, overview} ) {
   const [isHovering, setIsHovering] = useState(false)
   const [isClicked, setIsClicked] = useState(false)
   
@@ -48,20 +48,25 @@ function Movie ( { id, title, image, rating, releaseDate} ) {
 
   return (
     <div className='movie-container'>
-      <img className='poster' src={`https://image.tmdb.org/t/p/w500${image}`} height='500px' width='350px' alt="Italian Trulli" onError={(err) => console.log('img error', err.target)} onMouseEnter={handleMouseHover} onMouseLeave={handleMouseLeave}/>
-      {/* <div className='hover menu'>
-      </div> */}
-     <div>
-     <div className='year-and-rating'> {year}
-     <span className='rating'>{trueRating} </span>
-     {/* <button onClick={handleClick}>
-      Click Me
-     </button> */}
+      <img className='poster' src={`https://image.tmdb.org/t/p/w500${image}`}alt="Italian Trulli" onError={(err) => console.log('img error', err.target)} onMouseEnter={handleMouseHover} onMouseLeave={handleMouseLeave}/>
+     <div> 
+     <div className='year-and-rating'>
+     <div className='year'>{year}</div>
+     <div className='rating-container'>
+     <span>{trueRating} </span>
+     <img className='rating-star' src={Star} ></img>
+      </div>
       </div>
       <div className='title' >
       {title}</div>
       </div> 
-      {isHovering && <div className="movie-card"><MovieCard /></div>}
+   
+      {isHovering && <div className="movie-card"><MovieCard id={id}
+          title={title}
+          image={image}
+          rating={rating}
+          releaseDate={releaseDate}
+          overview={overview}  /></div>}
     </div> 
   );
 }
