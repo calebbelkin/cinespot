@@ -18,6 +18,11 @@
 .rating-star {
     height: 1em; /* Sets the height relative to the font size of .year-and-rating */
     width: auto;
+    color: yellow; /* This should change the color of the SVG */
+}
+
+.rating-star:hover {
+    color: orange; /* Color on hover */
 }
 
 
@@ -47,7 +52,6 @@
     align-items: center; /* Vertically align items */
     color: #bababa;
     font-size: 1rem; /* Define a base font size for the element */
-    background-color: green; /* For debugging purposes, can be removed */
 }
 
 

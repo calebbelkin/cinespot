@@ -4,7 +4,7 @@ import './MovieComponent.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { setColor, enableColorChange, disableColorChange, setLastClickedId } from './Redux/textSlice';
 import MovieCard from './MovieCard';
-import Star from './assets/star-outline.svg'
+import Star from './assets/star.svg'
 
 function Movie ( { id, title, image, rating, releaseDate, overview} ) {
   const [isHovering, setIsHovering] = useState(false)
@@ -47,28 +47,39 @@ function Movie ( { id, title, image, rating, releaseDate, overview} ) {
   };
 
   return (
-    <div className='movie-container'>
-      <img className='poster' src={`https://image.tmdb.org/t/p/w500${image}`}alt="Italian Trulli" onError={(err) => console.log('img error', err.target)} onMouseEnter={handleMouseHover} onMouseLeave={handleMouseLeave}/>
-     <div> 
-     <div className='year-and-rating'>
-     <div className='year'>{year}</div>
-     <div className='rating-container'>
-     <span>{trueRating} </span>
-     <img className='rating-star' src={Star} ></img>
-      </div>
-      </div>
-      <div className='title' >
-      {title}</div>
-      </div> 
-   
-      {isHovering && <div className="movie-card"><MovieCard id={id}
-          title={title}
-          image={image}
-          rating={rating}
-          releaseDate={releaseDate}
-          overview={overview}  /></div>}
-    </div> 
-  );
+    <div className="movie-container">
+        <img
+            className="poster"
+            src={`https://image.tmdb.org/t/p/w500${image}`}
+            alt="Poster"
+            onError={(err) => console.log('img error', err.target)}
+            onMouseEnter={handleMouseHover}
+            onMouseLeave={handleMouseLeave}
+        />
+        <div>
+            <div className="year-and-rating">
+                <div className="year">{year}</div>
+                <div className="rating-container">
+                    <span>{trueRating}</span>
+                    <img className="rating-star" src={Star} alt="Star" />
+                </div>
+            </div>
+            <div className="title">{title}</div>
+        </div>
+        {isHovering && (
+            <div className="movie-card">
+                <MovieCard
+                    id={id}
+                    title={title}
+                    image={image}
+                    rating={rating}
+                    releaseDate={releaseDate}
+                    overview={overview}
+                />
+            </div>
+        )}
+    </div>
+);
 }
 
 export default Movie;

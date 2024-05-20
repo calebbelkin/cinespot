@@ -21,7 +21,7 @@ const handleUsernameChange = (event) => {
         password: password
       };
       try {
-        await fetch("http://localhost:4321/userLogin", {
+        const response = await fetch("http://localhost:4321/userLogin", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -29,6 +29,12 @@ const handleUsernameChange = (event) => {
           body: JSON.stringify(userData),
         });
         console.log("data sent!", JSON.stringify(userData));
+        const data = await response.json();
+    if (response.ok) {
+        console.log('Login successful:', data);
+    } else {
+        console.error('Login failed:', data);
+    }
     } catch (error) {
             console.error("Error sending item:", error);
   };
