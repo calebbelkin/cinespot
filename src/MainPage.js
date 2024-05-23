@@ -1,16 +1,24 @@
 import React from 'react';
 import './MainPage.css'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Movie from './MovieComponent';
 import MovieGrid from './MovieGrid';
 import Button from '@mui/material/Button';
+import { useSelector } from 'react-redux';
+
+
 
 
 
 function MainPage() {
     const [currentSearch, setCurrentSearch] = useState('');
     const [movieData , setMovieData] = useState([])
+
+      const { username } = useSelector((state) => state.user);
+
+      console.log('line 20', username)
+
 
     const retriveSearch = async () => {
       const QuereyParam = currentSearch;
@@ -89,7 +97,7 @@ setMovieData(data.results);
             <input type="text" className="search-bar" name="search" value={currentSearch} placeholder='Seach Movies' onChange={(e) => setCurrentSearch(e.target.value)}/>
             <input type="submit" value="" placeholder='' className='submit-btn' onClick={console.log('clicked')}/>
           </form> 
-          <Button className='login' variant="outlined" onClick={handleLoginNav}>Login</Button>;
+          <Button className='login' variant="outlined" onClick={handleLoginNav}>   {username === '' ? "Login" : 'Hi,'+ ' ' + username} </Button>;
           </header>
         <div className='backdrop'>
           <MovieGrid movieDetails={movieDetails}/>
@@ -100,6 +108,8 @@ setMovieData(data.results);
 
 export default MainPage;
 
+  // style={{ color: lastClickedId === id ? 'white' : 'black' }} title redux color test 
+  // {username === '' ? "Login" : username}
 
 // onChange defined an event handler for the input field, it is called eveytime somethin is typed in the input field 
 // e (on change) is the event object

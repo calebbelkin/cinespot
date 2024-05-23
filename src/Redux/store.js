@@ -1,8 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import textColorSlice from './textSlice'
+// import textColorSlice from './textSlice'
+import userSlice from './userSlice'
 
 export const store = configureStore({
   reducer: {
-    textColor: textColorSlice,
+    user: userSlice,
   },
 })
+
+// export default store 

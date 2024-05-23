@@ -1,23 +1,43 @@
+import { Alert } from '@mui/material';
 import React from 'react';
-import { useState } from 'react';
+import { useState, useContext} from 'react';
 import { json, useNavigate } from 'react-router-dom';
+import './/login.css'
+import { setUsername } from './Redux/userSlice';
+import { useDispatch } from 'react-redux';
+
 
 function Login () {
-const [username, setUsername] = useState('');
 const [password, setPassword] = useState('');
+const [username1, setUsername1] = useState('');
+
+const dispatch = useDispatch();
 
 const handleUsernameChange = (event) => {
-    setUsername(event.target.value);
+    setUsername1(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
+  let navigate = useNavigate();
+
+
+  const loginSuccess = (user) => {
+    navigate('/mainpage')
+  }
+
+  function loginUnsuccessful() {
+    alert('Username or Password is Incorrect');
+    setPassword('')
+    setUsername1('')
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const userData = {
-        username: username,
+        username: username1,
         password: password
       };
       try {
@@ -32,7 +52,10 @@ const handleUsernameChange = (event) => {
         const data = await response.json();
     if (response.ok) {
         console.log('Login successful:', data);
+        loginSuccess(username1);
+        dispatch(setUsername(username1))
     } else {
+        loginUnsuccessful();
         console.error('Login failed:', data);
     }
     } catch (error) {
@@ -41,13 +64,14 @@ const handleUsernameChange = (event) => {
 }
 
     return (
-        <form onSubmit={handleSubmit}>
+      <div className='login'>
+          <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">Username:</label>
           <input
             type="text"
             id="username"
-            value={username}
+            value={username1}
             onChange={handleUsernameChange}
             required
           />
@@ -63,12 +87,23 @@ const handleUsernameChange = (event) => {
           />
         </div>
         <button type="submit">Login</button>
-        {/* <div >Dont have an account? Sign up here</div>
-        <button onClick={}>Sign Up</button> */}
       </form>
+      </div>
+        
     );
 }
 
 export default Login;
 
 
+ // const handleClick = () => {
+  //   if (canChangeColor) {
+  //     dispatch(setLastClickedId(id));
+  //     dispatch(disableColorChange());
+  //   }
+  //   else {
+  //     dispatch(setLastClickedId(1));
+  //     dispatch(setLastClickedId(id))
+  //     dispatch(enableColorChange())
+  //   }
+  // };

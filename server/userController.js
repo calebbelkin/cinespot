@@ -11,9 +11,10 @@ userController.login = async (req, res, next) => {
             console.log('User does not exist');
             return res.status(404).json({ error: 'User does not exist' });
         } else {
-            console.log('User exists');
+            // console.log('User exists this', password);
+            if (password == user.password) return res.status(200).json({ message: 'Valid User' });
             // Here you should verify the password, for example using bcrypt if passwords are hashed
-            return res.status(200).json({ message: 'User exists' });
+            else return res.status(404).json({ error: 'username & password is incorect' });
         }
     } catch (err) {
         return next(err);  // Pass errors to error handling middleware

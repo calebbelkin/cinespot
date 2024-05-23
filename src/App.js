@@ -1,8 +1,10 @@
 import logo from './logo.svg';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
+import { LoginContext } from './contexts/loginContext';
 
 function App() {
+
   let navigate = useNavigate();
 
 
@@ -11,6 +13,7 @@ function App() {
   }
   return (
     <div className="App">
+  
       <header className="App-header">
         <p>
           Welcome
