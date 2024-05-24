@@ -6,6 +6,8 @@ import Movie from './MovieComponent';
 import MovieGrid from './MovieGrid';
 import Button from '@mui/material/Button';
 import { useSelector } from 'react-redux';
+import { setUsername } from './Redux/userSlice';
+import { useDispatch } from 'react-redux';
 
 
 
@@ -16,8 +18,17 @@ function MainPage() {
     const [movieData , setMovieData] = useState([])
 
       const { username } = useSelector((state) => state.user);
+      const dispatch = useDispatch();
 
       console.log('line 20', username)
+
+      const logout = () => {
+        dispatch(setUsername(null))
+      }
+
+      const renderLogout = () => {
+        return ;
+      }
 
 
     const retriveSearch = async () => {
@@ -97,7 +108,8 @@ setMovieData(data.results);
             <input type="text" className="search-bar" name="search" value={currentSearch} placeholder='Seach Movies' onChange={(e) => setCurrentSearch(e.target.value)}/>
             <input type="submit" value="" placeholder='' className='submit-btn' onClick={console.log('clicked')}/>
           </form> 
-          <Button className='login' variant="outlined" onClick={handleLoginNav}>   {username === '' ? "Login" : 'Hi,'+ ' ' + username} </Button>;
+          <Button className='login' variant="outlined" onClick={handleLoginNav}>   {!username ? "Login" : 'Hi,'+ ' ' + username} </Button>;
+          {username ? <Button className='logout' variant="outlined" onClick={logout}> Logout </Button> : null}
           </header>
         <div className='backdrop'>
           <MovieGrid movieDetails={movieDetails}/>
@@ -108,11 +120,5 @@ setMovieData(data.results);
 
 export default MainPage;
 
-  // style={{ color: lastClickedId === id ? 'white' : 'black' }} title redux color test 
-  // {username === '' ? "Login" : username}
 
-// onChange defined an event handler for the input field, it is called eveytime somethin is typed in the input field 
-// e (on change) is the event object
-// e (handle click) represents the event object for the on submit event 
-//handler function: a function designed to respond to specific events or actions 
-// 
+

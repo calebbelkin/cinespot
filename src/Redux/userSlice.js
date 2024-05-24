@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    username: ''  // Flag to control color changes
+    username: null  // Flag to control color changes
 };
 
 const userSlice = createSlice({

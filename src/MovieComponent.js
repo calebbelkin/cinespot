@@ -38,6 +38,10 @@ function Movie ( { id, title, image, rating, releaseDate, overview} ) {
   //   }
   // };
 
+  const toggleFav = () => {
+    setIsClicked(!isClicked)
+  }
+
   const handleMouseHover = (e) => {
     setIsHovering(true)
   }
@@ -61,7 +65,8 @@ function Movie ( { id, title, image, rating, releaseDate, overview} ) {
                 <div className="year">{year}</div>
                 <div className="rating-container">
                     <span>{trueRating}</span>
-                    <img className="rating-star" src={Star} alt="Star" />
+                    {/* <img className="rating-star" src={Star} alt="Star" /> */}
+                    <button onClick={toggleFav} style={{ backgroundColor : isClicked ? 'yellow' : 'white' }}>Favorite</button>
                 </div>
             </div>
             <div className="title">{title}</div>
