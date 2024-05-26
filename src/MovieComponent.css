@@ -1,0 +1,98 @@
+.MovieRows {
+   display:flex;
+   flex-wrap: wrap;
+   column-gap: 20px;
+   row-gap: 40px;
+   padding-top: 40px;
+   padding-left: 60px;
+   padding-right: 60px;
+   /* justify-content: center; */
+   align-items: flex-start;
+ 
+}
+
+
+.backdrop{
+    color: #3b3b3b;
+}
+.rating-star {
+    height: 1em; /* Sets the height relative to the font size of .year-and-rating */
+    width: auto;
+    color: yellow; /* This should change the color of the SVG */
+}
+
+.rating-star:hover {
+    color: orange; /* Color on hover */
+}
+
+
+ .movie-container {
+    flex: 1 1 auto;
+    max-width: 300px;
+    height: auto;
+    position: relative;
+    box-sizing: border-box;
+} 
+
+
+
+.movie-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Optional: Adjust according to the desired width */
+    z-index: 100; /* Ensures it overlays other content */
+}
+
+
+
+.year-and-rating {
+    display: flex;
+    justify-content: space-between; /* Space between elements to push them to the edges */
+    align-items: center; /* Vertically align items */
+    color: #bababa;
+    font-size: 1rem; /* Define a base font size for the element */
+}
+
+
+.year {
+    margin-right: auto; /* Pushes the year to the far left */
+}
+
+.rating-container {
+    column-gap: 10px;
+    display: flex;
+    align-items: center; /* Center the items vertically */
+}
+
+.title{
+    font-size: 20px;
+    color: white;
+    padding-top: 5px;
+}
+
+@media (max-width: 1200px) {
+    .movie-container {
+        flex: 1 1 250px; /* Adjust width for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .movie-container {
+        flex: 1 1 200px; /* Adjust width for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .movie-container {
+        flex: 1 1 150px; /* Adjust width for extra small screens */
+    }
+}
+
+
+
+.poster {
+    border-radius: 10px;
+    width: 100%; /* Ensure the poster takes full width of the container */
+    height: auto; /* Maintain aspect ratio */
+}
