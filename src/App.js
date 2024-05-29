@@ -1,7 +1,8 @@
-import logo from './logo.svg';
+
 import { useNavigate } from 'react-router-dom';
 import './App.css';
 import { LoginContext } from './contexts/loginContext';
+import MainPage from './components/MainPage';
 
 function App() {
 

@@ -4,10 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import MainPage from './MainPage';
+import MainPage from '@/components/MainPage';
 import { store } from './Redux/store'
 import { Provider } from 'react-redux'
-import Login from './login';
+import Login from '@/components/login';
 
 const router = createBrowserRouter([
   {
