@@ -92,7 +92,7 @@ function Movie ( { id, title, image, rating, releaseDate, overview} ) {
   return (
     <div className="movie-container">
         <img className="poster"
-            src={`https://image.tmdb.org/t/p/w500${image}`}
+            src={`https://image.tmdb.org/t/p/w500/${image}`}
             alt="Poster"
             onError={(err) => console.log('img error', err.target)}
             onMouseEnter={() => setIsHovering(true)}
