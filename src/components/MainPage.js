@@ -8,6 +8,7 @@ import Button from '@mui/material/Button';
 import { useSelector } from 'react-redux';
 import { setUsername } from '../Redux/userSlice';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function MainPage() {
     const [currentSearch, setCurrentSearch] = useState('');
@@ -86,7 +87,7 @@ function MainPage() {
             <input type="text" className="search-bar" name="search" value={currentSearch} placeholder='Seach Movies' onChange={(e) => setCurrentSearch(e.target.value)}/>
             <input type="submit" value="" placeholder='' className='submit-btn' />
           </form> 
-          <Button className='login' variant="outlined" onClick={handleLoginNav}>   {!username ? "Login" : 'Hi,'+ ' ' + username} </Button>;
+          <Button className='login' variant="outlined" as={Link} to="/login" >   {!username ? "Login" : 'Hi,'+ ' ' + username} </Button>;
           {username ? <Button className='logout' variant="outlined" onClick={logout}> Logout </Button> : null}
           </header>
         <div className='backdrop'>

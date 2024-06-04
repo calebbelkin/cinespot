@@ -4,9 +4,9 @@
     column-gap: 20px;
     row-gap: 40px;
     padding-top: 40px;
-    padding-left: 60px;
-    padding-right: 60px;
-    /* justify-content: center; */
+    /* padding-left: 60px;
+    padding-right: 60px; */
+    justify-content: center;
     align-items: flex-start;
   
  }
@@ -20,11 +20,7 @@
      width: auto;
      color: yellow; /* This should change the color of the SVG */
  }
- 
- .rating-star:hover {
-     color: orange; /* Color on hover */
- }
- 
+
  
   .movie-container {
      flex: 1 1 auto;
@@ -94,5 +90,5 @@
  .poster {
      border-radius: 10px;
      width: 100%; /* Ensure the poster takes full width of the container */
-     height: auto; /* Maintain aspect ratio */
+     height: 450px; /* Maintain aspect ratio */
  }
