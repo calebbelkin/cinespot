@@ -45,7 +45,7 @@ app.get("/", (req, res) => {
 
   app.use("/movielist", router);
   app.use("/search", searchRouter);
-  app.use("/userLogin", userRouter);
+  app.use("/user", userRouter);
 
   // app.post("/userLogin", async (req, res) => {
   //   const userData = req.body;
