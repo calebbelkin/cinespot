@@ -27,7 +27,7 @@ function Movie ( { id, title, image, rating, releaseDate, overview} ) {
    setIsClicked(false)
    try {
      const response = await fetch("http://localhost:4321/user/deletefavorite", {
-       method: "DELETE",
+       method: "PATCH",
        headers: {
          "Content-Type": "application/json",
        },

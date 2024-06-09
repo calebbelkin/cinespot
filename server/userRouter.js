@@ -12,6 +12,11 @@ router.patch('/addfavorite', userController.addFavorite, (req, res, next) => {
     return res.status(201).json(res.locals.addFavorite)
 })
 
+router.patch('/deletefavorite', userController.deleteFavorite, (req, res, next) => {
+    console.log('---> ENTERING add fav ROUTER <---');
+    return res.status(201).json(res.locals.deleteFavorite)
+})
+
 
 
 module.exports = router;

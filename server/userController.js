@@ -2,9 +2,6 @@ const userController = {};
 const model = require('./model.js');
 // const User = require('./model.js')
 
-
-
-
 userController.login = async (req, res, next) => {
    const { username, password } = req.body;
    try {
@@ -28,35 +25,32 @@ userController.login = async (req, res, next) => {
 userController.addFavorite = async (req, res, next) => {
    const { username, currMovieData } = req.body;
 
-
-
-
-
-
    try {
-       console.log('before')
-       const userFavorite = await model.collection.findOneAndUpdate(
+       const Favorite = await model.collection.findOneAndUpdate(
            { username: username },
-           { $push: { favorites: currMovieData } }
-           // { new: true, runValidators: true } // Ensure the updated document is returned and validators are run
-       );
-
-
-       console.log('after')
-
-
-
-
-       if (!userFavorite) {
+           { $push: { favorites: currMovieData } });
+       if (!Favorite) {
            return res.status(404).json({ error: 'User does not exist - even though I am logged in' });
        }
-
-
-       return res.status(200).json({ message: 'Movie added', user: userFavorite });
+       return res.status(200).json({ message: 'Movie added', movie: Favorite });
    } catch (err) {
        return next(err);
    }
 };
 
+userController.deleteFavorite = async (req, res, next) => {
+    const { username, movieId} = req.body 
+    try {
+        const deleteFav = await model.collection.findOneAndUpdate(
+            { username: username },
+            { $pull: { favorites: { id: movieId}}}
+        );
+            if (!deleteFav) res.status(404).json({ error: 'could not remove favorite' }); 
+
+            return res.status(200).json({ message: 'Favorite removed', user: deleteFav });
+    } catch (err){
+            return next(err);
+}
+};
 
 module.exports = userController;
